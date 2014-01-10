@@ -1,4 +1,4 @@
-DEPARTAPLUS+ 1.0.1
+DEPARTAPLUS+ 1.2.0
 ==================
 
 DepartaPlus es una pequeña aplicacion que da de alta, baja, modifica y consulta empleados
