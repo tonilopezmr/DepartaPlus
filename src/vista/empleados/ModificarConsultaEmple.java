@@ -55,10 +55,9 @@ import vista.Vista;
 
 /**
  * Vista que tiene dos funcionalidades:
- * 
- *      Modificar empleados.
- *      Consultar empleados.
- * 
+ *
+ * Modificar empleados. Consultar empleados.
+ *
  * Segun su funcionalidad va a tener una distribucion distinta.
  *
  * @author Antonio López Marín
@@ -83,17 +82,17 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
     //Componentes del panel modificar
     private JTextField modNombreField, modSalarioField, modComisionField;
     private JTextField messageLabel;
-    private JLabel modNombreLabel, modDepartLabel, modOficioLabel, 
-            modDirectorLabel,modSalarioLabel, modComisionLabel;
+    private JLabel modNombreLabel, modDepartLabel, modOficioLabel,
+            modDirectorLabel, modSalarioLabel, modComisionLabel;
     private JComboBox<DepartamentoVo> departamentos;
     private JComboBox<Director> directores;
     private JComboBox<String> oficios;
     //Componentes del panel consultar
-    private JTextField conNombreField, conSalarioField, conComisionField, 
+    private JTextField conNombreField, conSalarioField, conComisionField,
             conCodigoField;
-    private JTextField conDirectorField, conOficioField, conDepartField, 
+    private JTextField conDirectorField, conOficioField, conDepartField,
             conFechaAltaField;
-    private JLabel conNombreLabel, conDepartLabel, conOficioLabel, 
+    private JLabel conNombreLabel, conDepartLabel, conOficioLabel,
             conDirectorLabel,
             conSalarioLabel, conComisionLabel, conCodigoLabel, conFechaAltaLabel;
     //Acion que realiza la vista
@@ -110,7 +109,6 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
     final private int DEP = 2;
     //Numero de columnas de la tabla
     final private int NUMCOL = 3;
-    
     /**
      * Funciones de empleado.
      *
@@ -214,7 +212,7 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
             public void keyReleased(KeyEvent e) {
             }
         });
-        
+
         //Lista
         busDepartLista = new JComboBox<>();
         busDepartLista.addItemListener(new ItemListener() {
@@ -295,16 +293,16 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
         setPreferredSize(dimen);
         setMinimumSize(dimen);
         setMaximumSize(dimen);
-        
+
         //Campos
         conCodigoField = new JTextField(10);
         conCodigoField.setEditable(false);
         conCodigoField.setFont(fuente);
-        
+
         conFechaAltaField = new JTextField(10);
         conFechaAltaField.setEditable(false);
         conFechaAltaField.setFont(fuente);
-        
+
         conDepartField = new JTextField(10);
         conDepartField.setEditable(false);
         conDepartField.setFont(fuente);
@@ -332,10 +330,10 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
         //Etiquetas modificar
         conCodigoLabel = new JLabel("        Codigo");
         conCodigoLabel.setFont(fuente);
-        
+
         conFechaAltaLabel = new JLabel("    Fecha de Alta");
         conFechaAltaLabel.setFont(fuente);
-        
+
         conNombreLabel = new JLabel("        Nombre");
         conNombreLabel.setFont(fuente);
 
@@ -397,7 +395,7 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
         setPreferredSize(dimen);
         setMinimumSize(dimen);
         setMaximumSize(dimen);
-        
+
         //Listas
         departamentos = new JComboBox<DepartamentoVo>();
         directores = new JComboBox<Director>();
@@ -447,39 +445,39 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
         btonModificar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                validName();
-                validSalario();
 
-                try {
-                    String nombre = modNombreField.getText();
-                    String oficio = (String) oficios.getSelectedItem();
-                    double salario = Double.parseDouble(modSalarioField.getText());
-                    Director director = (Director) directores.getSelectedItem();
-                    DepartamentoVo depart =
-                            (DepartamentoVo) departamentos.getSelectedItem();
-                    //Creo la fecha de hoy
-                    Date date = new Date();
+                if (validName() && validSalario()) {
+                    try {
+                        String nombre = modNombreField.getText();
+                        String oficio = (String) oficios.getSelectedItem();
+                        double salario = Double.parseDouble(modSalarioField.getText());
+                        Director director = (Director) directores.getSelectedItem();
+                        DepartamentoVo depart =
+                                (DepartamentoVo) departamentos.getSelectedItem();
+                        //Creo la fecha de hoy
+                        Date date = new Date();
 
-                    //Segun el salario y el codigo del departamento cobra una 
-                    //comision u otra
-                    double comision = controller.calcularComision(salario,
-                            depart.getCodigo());
-                    modComisionField.setText(comision + "");  //Informo de la comision
+                        //Segun el salario y el codigo del departamento cobra una 
+                        //comision u otra
+                        double comision = controller.calcularComision(salario,
+                                depart.getCodigo());
+                        modComisionField.setText(comision + "");  //Informo de la comision
 
-                    if (controller.modificarEmpleado(codigo, nombre, oficio,
-                            director.getCodigoDir(), date, salario, comision,
-                            depart.getCodigo())) {
-                        mostrarMensaje("** "+ nombre +" se modifico correctamente **");
-                        limpiarDatos();
-                        controller.nuevosCambios();
-                    } else {
-                        mostrarMensaje("** "+ nombre +"  no se modifico "
-                                + "correctamente **");
+                        if (controller.modificarEmpleado(codigo, nombre, oficio,
+                                director.getCodigoDir(), date, salario, comision,
+                                depart.getCodigo())) {
+                            mostrarMensaje("** " + nombre + " se modifico correctamente **");
+                            limpiarDatos();
+                            controller.nuevosCambios();
+                        } else {
+                            mostrarMensaje("** " + nombre + "  no se modifico "
+                                    + "correctamente **");
+                        }
+                    } catch (NumberFormatException nfe) {
+                        mostrarMensaje("** Introduzca un salario correcto **");
+                    } catch (SQLException ex) {
+                        mostrarError(ex.getMessage());
                     }
-                } catch (NumberFormatException nfe) {
-                    mostrarMensaje("** Introduzca un salario correcto **");
-                } catch (SQLException ex) {
-                    mostrarError(ex.getMessage());
                 }
             }
         });
@@ -579,11 +577,13 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
      *
      * @return
      */
-    public void validName() {
+    public boolean validName() {
         if (!esCadena(modNombreField.getText())) {
             mostrarMensaje("** Introduzca un nombre valido **");
+            return false;
         } else {
             messageLabel.setText("");
+            return true;
         }
     }
 
@@ -592,10 +592,11 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
      *
      * @return
      */
-    public void validSalario() {
+    public boolean validSalario() {
         if (!isNumeric(modSalarioField.getText())) {
             mostrarMensaje("** Introduzca un salario correcto **");
             modComisionField.setText("");
+            return false;
         } else {
             double salario = Double.parseDouble(modSalarioField.getText());
 
@@ -605,14 +606,14 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
             //Muestro la comision que seria con ese salario segun el codigo
             modComisionField.setText(controller.calcularComision(salario,
                     depart.getCodigo()) + "");
-
+            return true;
         }
     }
-    
+
     /**
      * Carga los datos de el panel de modificar.
-     * 
-     * @param emple 
+     *
+     * @param emple
      */
     public void cargarDatosModificar(EmpleadoVo emple) {
         modNombreField.setText(emple.getNombre());
@@ -647,16 +648,16 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
         //Se puede modificar
         btonModificar.setEnabled(true);
     }
-    
+
     /**
      * Carga los datos del panel de la consulta.
-     * 
-     * @param emple 
+     *
+     * @param emple
      */
     public void cargarDatosConsulta(EmpleadoVo emple) {
         try {
-            conCodigoField.setText(emple.getCodigo()+"");
-            conFechaAltaField.setText(emple.getFechaAlta()+"");
+            conCodigoField.setText(emple.getCodigo() + "");
+            conFechaAltaField.setText(emple.getFechaAlta() + "");
             conNombreField.setText(emple.getNombre());
             conSalarioField.setText(emple.getSalario() + "");
             conComisionField.setText(emple.getComision() + "");
@@ -673,11 +674,11 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
             conDirectorField.setText("NONE");
         }
     }
-    
+
     /**
      * Carga los datos de empleado.
-     * 
-     * @param codigo 
+     *
+     * @param codigo
      */
     public void cargarDatosEmple(int codigo) {
         try {
@@ -692,10 +693,10 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
             mostrarMensaje(e.getMessage());
         }
     }
-    
+
     /**
      * Limpia los datos segun la funcionalidad de la ventana.
-     * 
+     *
      */
     public void limpiarDatos() {
         if (accion.equals(MODIFICAR)) {
@@ -708,21 +709,21 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
             btonModificar.setEnabled(false);
         }
     }
-        
+
     /**
      * Limpia los componentes del panel de modificar.
-     * 
+     *
      */
-    public void limpiarModificacion(){
+    public void limpiarModificacion() {
         modNombreField.setText("");
         modSalarioField.setText("");
         modComisionField.setText("");
         messageLabel.setText("");
     }
-    
+
     /**
      * Limpia los datos de los comopnentes del panel de consultar.
-     * 
+     *
      */
     public void limpiarConsulta() {
         conCodigoField.setText("");
@@ -734,20 +735,20 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
         conDepartField.setText("");
         conDirectorField.setText("");
     }
-    
+
     /**
      * Busca los empleados
-     * 
+     *
      */
     public void buscarEmpleados() {
         DepartamentoVo dep = (DepartamentoVo) busDepartLista.getSelectedItem();
         setRegistrosTabla(busNameField.getText(), dep.getCodigo());
     }
-    
+
     /**
      * Añade los registros a la tabla.
-     * 
-     * @param empleados 
+     *
+     * @param empleados
      */
     public void addRegistros(EmpleadoVo[] empleados) {
         modeloTabla.setRowCount(0);
@@ -773,13 +774,13 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
             modeloTabla.addRow(empty);
         }
     }
-    
+
     /**
-     * Cambia los registros de la tabla segun el departamento y el nombre
-     * de un empleado.
-     * 
+     * Cambia los registros de la tabla segun el departamento y el nombre de un
+     * empleado.
+     *
      * @param nombreEmple
-     * @param codDepart 
+     * @param codDepart
      */
     public void setRegistrosTabla(String nombreEmple, int codDepart) {
         try {
@@ -799,10 +800,10 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
             mostrarError("** Error de la base de datos **");
         }
     }
-    
+
     /**
      * Cambia los departamentos.
-     * 
+     *
      */
     public void setDepartamentosBuscar() {
         try {
@@ -822,7 +823,7 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
 
     /**
      * Cambia la lista departamentos
-     * 
+     *
      */
     public void setDepartamentos() {
         try {
@@ -870,13 +871,13 @@ public class ModificarConsultaEmple extends JInternalFrame implements Observer, 
             this.directores.addItem(new Director(0, "NONE"));
         }
     }
-    
+
     /**
-     * Metodo que se redefine del patron Observer, que es llamado cuando
-     * hay cambios en la base de datos, para que se actualicen.
-     * 
+     * Metodo que se redefine del patron Observer, que es llamado cuando hay
+     * cambios en la base de datos, para que se actualicen.
+     *
      * @param o
-     * @param arg 
+     * @param arg
      */
     @Override
     public void update(Observable o, Object arg) {

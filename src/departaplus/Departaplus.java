@@ -16,6 +16,7 @@
  */
 package departaplus;
 
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import vista.Principal;
 
@@ -34,17 +35,15 @@ public class Departaplus {
 
             @Override
             public void run() {
-//                try {
+                try {
                     new Principal().setVisible(true);
-//                } catch (Throwable e) {
-//                    JOptionPane.showMessageDialog(null, 
-//                            "¡¡ERROR FATAL!!\n Asegurate que la base de "
-//                            + "datos esta bien configurada, y tiene todas los "
-//                            + "procedimientos y funciones.", 
-//                            "FATAL ERROR", JOptionPane.WARNING_MESSAGE);
-//   
-//                }
-                
+                } catch (Throwable e) {
+                    JOptionPane.showMessageDialog(null, 
+                            "¡¡ERROR FATAL!!\n Asegurate que la base de "
+                            + "datos esta bien configurada, y tiene todas los "
+                            + "procedimientos y funciones.", 
+                            "FATAL ERROR", JOptionPane.WARNING_MESSAGE);
+                }                
             }
         });
     }

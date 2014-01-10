@@ -183,6 +183,7 @@ public class Principal extends JFrame implements Vista {
              loadInternalFrames();
         } catch (ClassNotFoundException | SQLException ex) {
             mostrarError("¡Error de conexion de base de datos!");
+            System.out.println(ex.getMessage());
             //Cierro los siguientes controles..
             actionConnect.setEnabled(false);
             iniciar.setEnabled(true);
@@ -534,7 +535,7 @@ public class Principal extends JFrame implements Vista {
         about.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,
+                JOptionPane.showMessageDialog(desktop,
                         "Departaplus+ 1.0.1\n\n Creado por \tAntonio López Marín",
                         "Departaplus+ 1.0.1", JOptionPane.OK_OPTION);
             }
