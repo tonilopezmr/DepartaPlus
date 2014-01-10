@@ -14,7 +14,7 @@ Creada y diseñada por Antonio López Marín, la licencia es GNU v3: http://www.gnu
 
 Eres libre de difundir y modificar este codigo.
 
-Instrucciones
+Instalacion
 ==================	
 
 	Hay que ejecutar en la base de datos, el fichero Departaplus.sql.
