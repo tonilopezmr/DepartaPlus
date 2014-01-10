@@ -4,14 +4,19 @@ DEPARTAPLUS+ 1.0.1
 DepartaPlus es una pequeña aplicacion que da de alta, baja, modifica y consulta empleados
 y departamentos.
 
+Tiene una conexion con una base de datos Oracle 10g, http://www.oracle.com/technetwork/database/database10g/overview/index-095623.html
+
+Descargar aquí: http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html
+
 Tiene una interfaz MDI, con mucho que mejorar.
 
 Creada y diseñada por Antonio López Marín, la licencia es GNU v3: http://www.gnu.org/licenses/gpl.html
 
 Eres libre de difundir y modificar este codigo.
 
-Instrucciones:
-	
+Instrucciones
+==================	
+
 	Hay que ejecutar en la base de datos, el fichero Departaplus.sql.
 
 		
@@ -21,7 +26,8 @@ Instrucciones:
 	No hace falta encender antes la base de datos ya que la aplicacion, puede 
 	encender y apagar la base de datos, una vez apagada no puedes volver a encenderla.
 
-Patrones de diseño:
+Patrones de diseño
+==================
 
 	Esta aplicacion tiene diferentes patrones de diseño, los dos mas importantes son
 	Data Acces Object (DAO) y Value Object (VO), ambos son patrones de diseño para 
