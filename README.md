@@ -18,10 +18,8 @@ Instalacion
 ==================	
 
 	Hay que ejecutar en la base de datos, el fichero Departaplus.sql.
-
 		
 	Hay que configurar la base de datos con el fichero base-datos.cfg.
-
 
 	No hace falta encender antes la base de datos ya que la aplicacion, puede 
 	encender y apagar la base de datos, una vez apagada no puedes volver a encenderla.
