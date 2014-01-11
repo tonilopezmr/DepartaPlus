@@ -4,7 +4,11 @@ DEPARTAPLUS+ 1.2.0
 DepartaPlus es una pequeña aplicacion que da de alta, baja, modifica y consulta empleados
 y departamentos.
 
-Tiene una conexion con una base de datos Oracle 10g, http://www.oracle.com/technetwork/database/database10g/overview/index-095623.html
+Funciona con una base de datos Oracle XE v10, esta aplicacion trata del acceso a la base de datos 
+si no tienes una base de datos oracle no podras disfrutar de esta aplicacion, por ello utiliza la libreria
+JDBC para java.
+
+Base de datos Oracle 10g, http://www.oracle.com/technetwork/database/database10g/overview/index-095623.html
 
 Descargar aquí: http://www.oracle.com/technetwork/database/enterprise-edition/downloads/index.html
 
